@@ -1,6 +1,6 @@
 #include <iostream>
 #include "variables.h"
-#include <string.h>
+#include <windows.h>
 #include <fstream>
 #include <cstdlib>
 
@@ -86,36 +86,6 @@ int menu(){
     return op;
 }
 
-void principal(){
-    int op;
-    pos = loadCustomers();
-    do{
-        op = menu();
-        switch(op){
-            case 1:
-                pedirDato();
-                break;
-            case 2:
-                editar();
-                break;
-            case 3:
-                eliminar();
-                break;
-            case 4:
-                mostrarTodo();
-                break;
-            case 5:
-                buscarCustomer();
-                break;
-            case 6:
-                cout << "Gracias...\n";
-                break;
-            default:
-                cout << "Solo hay 6 opciones. \n";
-                break;
-        }
-    }while(op != 6);
-}
 
 void pedirDato(){
     CUSTOMER customer;
@@ -141,6 +111,7 @@ void pedirDato(){
 }
 
 void mostrarTodo(){
+	SetConsoleOutputCP(CP_UTF8);
     cout << "Mostrar Registros\n";
     for(int i =0; i < pos; i++){
         showData(customers[i]);
