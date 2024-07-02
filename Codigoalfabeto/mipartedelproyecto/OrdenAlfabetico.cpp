@@ -87,5 +87,3 @@ void agregarCliente(const char* nombreCliente, const char* nombreArchivo) {
         delete[] cliente;
     }
 }
-
-// La función main está excluida, como se solicitó
