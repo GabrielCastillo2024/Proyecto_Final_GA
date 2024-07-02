@@ -2,11 +2,17 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
-#include "funciones.cpp"
-#include "variables.h"
 
 // Tamaño máximo para los nombres de los clientes
 const int MAX_NOMBRE = 100;
+
+// Declaración de funciones
+void copiarCadena(char* destino, const char* origen);
+int compararCadenas(const char* a, const char* b);
+int longitudCadena(const char* cadena);
+std::vector<char*> leerClientes(const char* nombreArchivo);
+void escribirClientes(const std::vector<char*>& clientes, const char* nombreArchivo);
+void agregarCliente(const char* nombreCliente, const char* nombreArchivo);
 
 // Función para copiar una cadena de caracteres
 void copiarCadena(char* destino, const char* origen) {
@@ -82,16 +88,4 @@ void agregarCliente(const char* nombreCliente, const char* nombreArchivo) {
     }
 }
 
-int main() {
-    char nombreCliente[MAX_NOMBRE];
-    const char* nombreArchivo = "clientes.txt";
-
-    std::cout << "Ingrese el nombre del cliente: ";
-    std::cin.getline(nombreCliente, MAX_NOMBRE);
-
-    agregarCliente(nombreCliente, nombreArchivo);
-
-    std::cout << "Cliente agregado y lista actualizada." << std::endl;
-
-    return 0;
-}
+// La función main está excluida, como se solicitó
