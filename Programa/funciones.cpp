@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Alfabetizacion.cpp" // de tony
 #include "variables.h"
 #include <string.h>
 #include <fstream>
