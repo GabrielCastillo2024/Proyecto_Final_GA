@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "title.cpp"
 #include "funciones.cpp"
 
@@ -62,14 +61,19 @@ void MENU()
             break;
         case 6:
             Sleep(1000);
+            title_ordenarClientes();
+            ordenarClientes();
+            break;
+        case 7:
+            Sleep(1000);
             cout << "Gracias...\n";
             Sleep(2000);
             break;
         default:
-            cout << "Solo hay 6 opciones. \n";
+            cout << "Solo hay 7 opciones. \n";
             break;
         }
-    } while (opciones != 6);
+    } while (opciones != 7);
 }
 int main()
 {
