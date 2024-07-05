@@ -253,7 +253,6 @@ void writeFile() {
 }
 
 // la parte de Tony
-// esta falta por agregarse al menu, gabriel
 
 // Función para comparar dos cadenas de caracteres
 int compararNombres(const char* a, const char* b) {
@@ -273,7 +272,7 @@ void intercambiarClientes(CUSTOMER& a, CUSTOMER& b) {
 
 // Función para ordenar clientes alfabéticamente por nombre
 void ordenarClientes() {
-    ifstream archivoEntrada("customers.txt");
+    ifstream archivoEntrada("customers_sorted.txt");
     if (!archivoEntrada) {
         cout << "Error al abrir el archivo customers.txt" << endl;
         return;
