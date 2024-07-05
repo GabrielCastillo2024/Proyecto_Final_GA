@@ -20,6 +20,7 @@ void MENU()
         cout << " 4. Mostrar Todos \n";
         cout << " 5. Buscar \n";
         cout << " 6. Salir\n";
+        cout << " 7. Ordenar por ABC\n";
         cout << "Elija la opcion: ";
         cin >> opciones;
         SetColor(15);
