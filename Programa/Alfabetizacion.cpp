@@ -2,6 +2,7 @@
 #include <fstream>
 #include "variables.h"
 
+
 using namespace std;
 
 // Definición de estructuras y variables globales
