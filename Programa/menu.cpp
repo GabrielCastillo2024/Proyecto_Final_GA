@@ -1,10 +1,13 @@
 #include <iostream>
 #include "title.cpp"
 #include "funciones.cpp"
+#include <stdlib.h>
 
 using namespace std;
 
 // MENUS
+// tomar en cuenta 
+// https://mathbits.com/MathBits/CompSci/Introduction/clear.htm#:~:text=To%20clear%20the%20screen%20in,h%3E%20is%20needed.
 
 void MENU()
 {
@@ -19,8 +22,8 @@ void MENU()
         cout << " 3. Eliminar\n";
         cout << " 4. Mostrar Todos \n";
         cout << " 5. Buscar \n";
-        cout << " 6. Salir\n";
-        cout << " 7. (WIP) (Aún no sirve) Ordenar por ABC\n";
+        cout << " 6. (WIP) (Aún no sirve) Ordenar por ABC\n";
+        cout << " 7. Salir\n";
         cout << "Elija la opcion: ";
         cin >> opciones;
         SetColor(15);
@@ -31,58 +34,47 @@ void MENU()
             Sleep(1000);
             title_PedirDato();
             pedirDato();
-            system("clear");
+            
 
             break;
         case 2:
             Sleep(1000);
             title_Editar();
             editar();
-            system("clear");
 
 
             break;
         case 3:
             Sleep(1000);
             title_Eliminar();
-            eliminar();
-            system("clear");
-            
+            eliminar();            
           
             break;
         case 4:
             Sleep(1000);
             title_MostrarTodo();
-            mostrarTodo();
-            system("clear");
-            
+            mostrarTodo();            
            
             break;
         case 5:
             Sleep(1000);
             title_BuscarCustomer();
-            buscarCustomer();
-            system("clear");
-           
+            buscarCustomer();           
           
             break;
         case 6:
             Sleep(1000);
             title_ordenarClientes();
             ordenarClientes();
-            system("clear");
 
             break;
         case 7:
             Sleep(1000);
             cout << "Gracias...\n";
-            system("clear");
-            Sleep(2000);
             break;
 
         default:
             cout << "Solo hay 7 opciones. \n";
-            system("clear");
             break;
         }
     } while (opciones != 7);

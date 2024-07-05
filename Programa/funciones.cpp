@@ -263,6 +263,8 @@ int compararNombres(const char* a, const char* b) {
     return *a - *b;
 }
 
+//es decir un cliente es "a", el otro cliente es "b"
+
 // Función para intercambiar dos clientes
 void intercambiarClientes(CUSTOMER& a, CUSTOMER& b) {
     CUSTOMER temp = a;
@@ -272,7 +274,7 @@ void intercambiarClientes(CUSTOMER& a, CUSTOMER& b) {
 
 // Función para ordenar clientes alfabéticamente por nombre
 void ordenarClientes() {
-    ifstream archivoEntrada("customers_sorted.txt");
+    ifstream archivoEntrada("customers.txt");
     if (!archivoEntrada) {
         cout << "Error al abrir el archivo customers.txt" << endl;
         return;
@@ -304,7 +306,7 @@ void ordenarClientes() {
     }
 
     // Escribir los clientes ordenados en el archivo
-    ofstream archivoSalida("customers_sorted.txt");
+    ofstream archivoSalida("customers.txt");
     if (!archivoSalida) {
         cout << "Error al abrir el archivo customers_sorted.txt" << endl;
         return;
