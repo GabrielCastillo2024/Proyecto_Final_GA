@@ -1,5 +1,10 @@
-1. Opción de cerrar/interrumpir el programa en cualquier momento
-2. Si se excede el límite de caracteres, mostrar un error comprensible
-3. No permitir "id" con valor negativo, mostrar una advertencia al usuario y que vuelva a insertar cliente
-4. Corrige la funcionalidad de editar id's ya existentes (no deja editarlas)
-5. Cuando se use la funcionalidad "Mostrar todo" mostrar advertencia al usuario de que no existe ningún cliente
+Si no hay ningún cliente, cuando se use la funcionalidad "Mostrar todo" mostrar advertencia al usuario de que no existe ningún cliente, así mismo con la funcionalidad "Ordenar ABC"
+
+Opción de cerrar/interrumpir el programa en cualquier momento
+
+Si se excede el límite de caracteres, mostrar un error comprensible
+
+No permitir "id" con valor negativo, mostrar una advertencia al usuario y que vuelva a insertar cliente
+
+Corrige la funcionalidad de editar id's ya existentes (no deja editarlas)
+
