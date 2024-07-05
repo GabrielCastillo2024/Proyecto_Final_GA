@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "funcionesUsuarios.cpp"
 #include "title.cpp"
 #include "funciones.cpp"
 
@@ -28,33 +28,33 @@ void MENU()
         switch (opciones)
         {
         case 1:
-            Sleep(1000);
+
             title_PedirDato();
             pedirDato();
 
             break;
         case 2:
-            Sleep(1000);
+
             title_Editar();
             editar();
 
             break;
         case 3:
-            Sleep(1000);
+
             title_Eliminar();
             eliminar();
             
           
             break;
         case 4:
-            Sleep(1000);
             title_MostrarTodo();
             mostrarTodo();
             
            
             break;
         case 5:
-            Sleep(1000);
+            
+            system("cls");
             title_BuscarCustomer();
             buscarCustomer();
            
