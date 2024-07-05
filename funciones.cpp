@@ -1,11 +1,10 @@
 #include <iostream>
 #include "variables.h"
-#include <windows.h>
+#include <string.h>
 #include <fstream>
 #include <cstdlib>
 
 using namespace std;
-
 
 CUSTOMER customers[MAX_REG];
 int pos = 0;
@@ -25,53 +24,53 @@ void showData(CUSTOMER &customer);
 int menu();
 void principal();
 
-//manejo de archivos
+// manejo de archivos
 int loadCustomers();
-void writeFile(const CUSTOMER &customer);
+void writeFile();
 
-
-void addCustomer(CUSTOMER *customer){
-	customers[pos] = *customer;
-	pos++;
+void addCustomer(CUSTOMER *customer) {
+    customers[pos] = *customer;
+    pos++;
+    writeFile();
 }
 
-CUSTOMER findCustomer(int id){
-	CUSTOMER customer;
-	for(int i = 0; i<pos; i++){
-		if(customers[i].id == id){
-			return customers[i];
-		}
-	}
-	return customer;
+CUSTOMER findCustomer(int id) {
+    CUSTOMER customer;
+    for (int i = 0; i < pos; i++) {
+        if (customers[i].id == id) {
+            return customers[i];
+        }
+    }
+    return customer;
 }
 
-int findPos(int id){
-	for(int i = 0; i < pos; i++){
-		if(customers[i].id == id) return i;
-	}
-	return -1;
+int findPos(int id) {
+    for (int i = 0; i < pos; i++) {
+        if (customers[i].id == id) return i;
+    }
+    return -1;
 }
 
-void updateCustomer(CUSTOMER *customer, int id){
-	int position = findPos(id);
-	strcpy(customers[position].email, customer->email);
-	strcpy(customers[position].name, customer->name);
-	strcpy(customers[position].telephone, customer->telephone);
-	strcpy(customers[position].address, customer->address);
-	strcpy(customers[position].date, customer->date);
+void updateCustomer(CUSTOMER *customer, int id) {
+    int position = findPos(id);
+    strcpy(customers[position].email, customer->email);
+    strcpy(customers[position].name, customer->name);
+    strcpy(customers[position].telephone, customer->telephone);
+    strcpy(customers[position].address, customer->address);
+    strcpy(customers[position].date, customer->date);
+    writeFile();
 }
 
-void destroyCustomer(int id){
-	int position = findPos(id);
-	for(int i = position; i<pos-1; i++){
-		customers[i] = customers[i+1];
-	}
-	CUSTOMER c;
-	customers[pos-1] = c;
-	pos--;
+void destroyCustomer(int id) {
+    int position = findPos(id);
+    for (int i = position; i < pos - 1; ++i) {
+        customers[i] = customers[i + 1];
+    }
+    pos--;
+    writeFile();
 }
 
-int menu(){
+int menu() {
     int op;
     pos = loadCustomers();
     cout << "Menu\n";
@@ -86,72 +85,102 @@ int menu(){
     return op;
 }
 
+void principal() {
+    int op;
+    pos = loadCustomers();
+    do {
+        op = menu();
+        switch (op) {
+            case 1:
+                pedirDato();
+                break;
+            case 2:
+                editar();
+                break;
+            case 3:
+                eliminar();
+                break;
+            case 4:
+                mostrarTodo();
+                break;
+            case 5:
+                buscarCustomer();
+                break;
+            case 6:
+                cout << "Gracias...\n";
+                break;
+            default:
+                cout << "Solo hay 6 opciones. \n";
+                break;
+        }
+    } while (op != 6);
+}
 
-void pedirDato(){
+void pedirDato() {
     CUSTOMER customer;
     cout << "Datos del Cliente" << endl;
     cout << "ID: ";
     cin >> customer.id;
-    if(findPos(customer.id)!=-1){
+    if (findPos(customer.id) != -1) {
         cout << "Registro ya existe..." << endl;
         return;
     }
     cout << "NOMBRE: ";
-    scanf(" %[^\n]", customer.name);
+    cin.ignore();
+    cin.getline(customer.name, 30);
     cout << "CORREO: ";
-    scanf(" %[^\n]", customer.email);
+    cin.getline(customer.email, 50);
     cout << "TELEFONO: ";
-    scanf(" %[^\n]", customer.telephone);
+    cin.getline(customer.telephone, 15);
     cout << "DIRECCION: ";
-    scanf(" %[^\n]", customer.address);
+    cin.getline(customer.address, 100);
     cout << "FECHA DE NACIMIENTO: ";
-    scanf(" %[^\n]", customer.date);
+    cin.getline(customer.date, 20);
     addCustomer(&customer);
-    writeFile(customer);
 }
 
-void mostrarTodo(){
-	SetConsoleOutputCP(CP_UTF8);
+void mostrarTodo() {
     cout << "Mostrar Registros\n";
-    for(int i =0; i < pos; i++){
+    for (int i = 0; i < pos; i++) {
         showData(customers[i]);
     }
 }
 
-void editar(){
+void editar() {
     CUSTOMER customer;
     int id;
     cout << "ID: ";
-    cin >>id;
-    if(findPos(id)==-1){
+    cin >> id;
+    if (findPos(id) == -1) {
         cout << "Registro no existe..." << endl;
         return;
     }
     customer = findCustomer(id);
-    cout << "Nombre: " ;
-    scanf(" %[^\n]", customer.name);
+    cout << "Nombre: ";
+    cin.ignore();
+    cin.getline(customer.name, 30);
     cout << "Correo: ";
-    scanf(" %[^\n]", customer.email);
+    cin.getline(customer.email, 50);
     cout << "Telefono: ";
-    scanf(" %[^\n]", customer.telephone);
+    cin.getline(customer.telephone, 15);
     cout << "Direccion: ";
-    scanf(" %[^\n]", customer.address);
+    cin.getline(customer.address, 100);
     cout << "Fecha de nacimiento: ";
-    scanf(" %[^\n]", customer.date);
-    
+    cin.getline(customer.date, 20);
+
     updateCustomer(&customer, id);
     cout << "Registro actualizado...\n";
 }
 
 void eliminar() {
     int id = 0;
-    if(pos == 0){
+    if (pos == 0) {
         cout << "No hay nada que eliminar\n";
         return;
     }
     cout << "ID de cliente a eliminar: ";
     cin >> id;
-    if(findPos(id)==-1){
+    if (findPos(id) == -1) {
         cout << "Registro no existe..." << endl;
         return;
     }
@@ -164,7 +193,7 @@ void buscarCustomer() {
     int id = 0;
     cout << "ID de cliente a buscar: ";
     cin >> id;
-    if(findPos(id)==-1){
+    if (findPos(id) == -1) {
         cout << "Registro no existe..." << endl;
         return;
     }
@@ -172,11 +201,11 @@ void buscarCustomer() {
     CUSTOMER customer = findCustomer(id);
     int x = findPos(id);
 
-    cout << "\nCliente #" << x+1 << ":\n";
+    cout << "\nCliente #" << x + 1 << ":\n";
     showData(customer);
 }
 
-void showData(CUSTOMER &customer){
+void showData(CUSTOMER &customer) {
     cout << "ID: " << customer.id << endl;
     cout << "Nombre: " << customer.name << endl;
     cout << "Correo: " << customer.email << endl;
@@ -185,51 +214,41 @@ void showData(CUSTOMER &customer){
     cout << "Fecha de nacimiento: " << customer.date << endl;
 }
 
-
-
-
-
-
-int loadCustomers()
-{
-	ifstream archivo("customers.txt");
-	if(archivo.fail()){
-		return 0;
-	}
-	int i = 0;
-	while(archivo >> customers[i].id)
-	{
-		archivo.ignore();
-		archivo.getline(customers[i].name, 30);
-		archivo.getline(customers[i].email, 50);
-		archivo.getline(customers[i].telephone, 15);
-		archivo.getline(customers[i].address, 100);
-		archivo.getline(customers[i].date, 20);
-		i++;
-	}
-	archivo.close();
-	return i;
+int loadCustomers() {
+    ifstream archivo("customers.txt");
+    if (archivo.fail()) {
+        return 0;
+    }
+    int i = 0;
+    while (archivo >> customers[i].id) {
+        archivo.ignore();
+        archivo.getline(customers[i].name, 30);
+        archivo.getline(customers[i].email, 50);
+        archivo.getline(customers[i].telephone, 15);
+        archivo.getline(customers[i].address, 100);
+        archivo.getline(customers[i].date, 20);
+        i++;
+    }
+    archivo.close();
+    return i;
 }
 
+void writeFile() {
+    ofstream archivo("customers.txt");
+    if (archivo.fail()) {
+        cout << "No se puede abrir archivo" << endl;
+        exit(1);
+    }
 
-void writeFile(const CUSTOMER &customer)
-{
-	ofstream archivo;
-	archivo.open("customers.txt", ios::app);
-	
-	if(archivo.fail())
-	{
-		cout << "No se puede abrir archivo" << endl;
-		exit(1);
-	}
+    for (int i = 0; i < pos; ++i) {
+        archivo << customers[i].id << endl;
+        archivo << customers[i].name << endl;
+        archivo << customers[i].email << endl;
+        archivo << customers[i].telephone << endl;
+        archivo << customers[i].address << endl;
+        archivo << customers[i].date << endl;
+    }
 
-	archivo << customer.id << endl;
-	archivo << customer.name << endl;
-	archivo << customer.email << endl;
-	archivo << customer.address << endl;
-	archivo << customer.date << endl;
-
-	
+    archivo.close();
 }
 
-//agregar funcionalidad de borrar y editar el archivo 
