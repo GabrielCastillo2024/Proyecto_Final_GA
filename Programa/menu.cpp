@@ -31,18 +31,22 @@ void MENU()
             Sleep(1000);
             title_PedirDato();
             pedirDato();
+            system("clear");
 
             break;
         case 2:
             Sleep(1000);
             title_Editar();
             editar();
+            system("clear");
+
 
             break;
         case 3:
             Sleep(1000);
             title_Eliminar();
             eliminar();
+            system("clear");
             
           
             break;
@@ -50,6 +54,7 @@ void MENU()
             Sleep(1000);
             title_MostrarTodo();
             mostrarTodo();
+            system("clear");
             
            
             break;
@@ -57,6 +62,7 @@ void MENU()
             Sleep(1000);
             title_BuscarCustomer();
             buscarCustomer();
+            system("clear");
            
           
             break;
@@ -64,14 +70,19 @@ void MENU()
             Sleep(1000);
             title_ordenarClientes();
             ordenarClientes();
+            system("clear");
+
             break;
         case 7:
             Sleep(1000);
             cout << "Gracias...\n";
+            system("clear");
             Sleep(2000);
             break;
+
         default:
             cout << "Solo hay 7 opciones. \n";
+            system("clear");
             break;
         }
     } while (opciones != 7);
